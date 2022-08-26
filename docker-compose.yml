@@ -1,0 +1,23 @@
+version: "3.8"
+services:
+  retirement_calculator_service:
+    build:
+      context: .
+      dockerfile: ./retirement_calculator_service/Dockerfile
+      args:
+        RETIREMENT_CALCULATOR_SERVICE_PORT: ${RETIREMENT_CALCULATOR_SERVICE_PORT}
+    env_file:
+      - .env
+    ports:
+      - "${RETIREMENT_CALCULATOR_SERVICE_PORT}:${RETIREMENT_CALCULATOR_SERVICE_PORT}"
+
+  user_service:
+    build:
+      context: .
+      dockerfile: ./user_service/Dockerfile
+      args:
+        USER_SERVICE_PORT: ${USER_SERVICE_PORT}
+    env_file:
+      - .env
+    ports:
+      - "${USER_SERVICE_PORT}:${USER_SERVICE_PORT}"
